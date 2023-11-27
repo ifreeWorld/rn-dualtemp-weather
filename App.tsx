@@ -1,5 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import {
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
+import * as Localization from 'expo-localization';
 import * as SplashScreen from 'expo-splash-screen';
 import { fetchForecast } from './src/utils/fetchWeather';
 import CurrentWeatherCard from './src/components/CurrentWeatherCard/CurrentWeatherCard';
@@ -8,6 +15,7 @@ import { palette } from './src/Styles/Palette';
 import HourlyForecast from './src/components/HourlyForecast/HourlyForecast';
 import AppHeader from './src/components/AppHeader/AppHeader';
 import moment from 'moment';
+import 'moment/locale/zh-cn';
 
 import {
   useFonts,
@@ -20,11 +28,13 @@ import {
 } from '@expo-google-fonts/dm-sans';
 import DailyForecast from './src/components/DailyForecast/DailyForecast';
 import { AppStateContext } from './src/utils/AppStateContext';
-import { getSelectedTempScale } from "./src/utils/AsyncStorageHelper";
+import { getSelectedTempScale } from './src/utils/AsyncStorageHelper';
 import AppFooter from './src/components/AppFooter/AppFooter';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
+const lang = Localization.locale;
+moment.locale(lang);
 
 export default function App() {
   const [forecast, setForecast] = useState<Weather>();
@@ -72,16 +82,16 @@ export default function App() {
 
   const loadForecast = async () => {
     setTempScale(await getSelectedTempScale());
-    setRefreshing(true)
-    const fetched = await fetchForecast()
+    setRefreshing(true);
+    const fetched = await fetchForecast();
     setForecast(fetched?.data);
     setLocation(fetched?.location?.district ?? fetched?.location.city);
-    setDate(moment())
-    setRefreshing(false)
-  }
+    setDate(moment());
+    setRefreshing(false);
+  };
 
   const onRefresh = React.useCallback(async () => {
-    loadForecast()
+    loadForecast();
   }, []);
 
   if (!fontsLoaded || !appIsReady || !forecast) {
@@ -93,15 +103,17 @@ export default function App() {
       <View onLayout={onLayoutRootView}>
         <ScrollView
           refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          <AppStateContext.Provider value={{ forecast, date, tempScale, setTempScale }}>
+          <AppStateContext.Provider
+            value={{ forecast, date, tempScale, setTempScale }}
+          >
             <AppHeader location={location} />
-            <CurrentWeatherCard temp={forecast.current.temp} weather={forecast.current.weather[0]} />
+            <CurrentWeatherCard
+              temp={forecast.current.temp}
+              weather={forecast.current.weather[0]}
+            />
             <HourlyForecast hourlyForecast={forecast.hourly?.slice(0, 24)} />
             <DailyForecast dailyForecast={forecast.daily} />
           </AppStateContext.Provider>
@@ -109,17 +121,17 @@ export default function App() {
         </ScrollView>
       </View>
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: palette.primaryDark
+    backgroundColor: palette.primaryDark,
   },
   scrollView: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });

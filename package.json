@@ -18,10 +18,12 @@
     "expo-app-loading": "~2.1.1",
     "expo-dev-client": "~2.0.1",
     "expo-linear-gradient": "~12.0.1",
+    "expo-localization": "^14.5.0",
     "expo-location": "~15.0.1",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "expo-updates": "~0.15.6",
+    "i18n-js": "3.9.2",
     "moment": "^2.29.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
@@ -31,6 +33,7 @@
     "react-native-web": "~0.18.9"
   },
   "devDependencies": {
+    "@types/i18n-js": "3.8.2",
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",

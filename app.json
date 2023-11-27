@@ -5,15 +5,13 @@
     "version": "1.1.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    
+
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#1C1B4D"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -34,7 +32,7 @@
       "url": "https://u.expo.dev/444bda66-1ab4-4665-ba53-c2b76743a33b"
     },
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "sdkVersion"
     },
     "web": {
       "favicon": "./assets/favicon.png"

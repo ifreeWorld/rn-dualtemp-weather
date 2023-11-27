@@ -8,45 +8,54 @@ import Card, { CardStyleTypes } from '../Card/Card';
 import { HourlyForecastItemStyles } from './HourlyForecast.Styles';
 import DualTempText from '../TempText/DualTempText';
 import { AppStateContext } from '../../utils/AppStateContext';
+import { translate } from '../../i18n';
 
 interface HourlyForecastItemProps {
-    temp: number;
-    dt: number;
-    icon: string;
-    pop: number;
+  temp: number;
+  dt: number;
+  icon: string;
+  pop: number;
 }
 
-const HourlyForecastItem = ({ temp, dt, icon, pop }: HourlyForecastItemProps) => {
-    const downFallType = temp > 0 ? "Rain" : "Snow"
-    const context = useContext(AppStateContext);  
-    const timeFormat = context?.tempScale === 'C' ? "HH:mm" : "h:mm a";
-    
-    return (
-        <Card cardType={CardStyleTypes.HOURLY}>
-            <View style={HourlyForecastItemStyles.HourlyItem}>
-                <Text style={HourlyForecastItemStyles.HourText}>
-                    {moment.unix(dt).format(timeFormat).toUpperCase()}
-                </Text>
-                <Text style={HourlyForecastItemStyles.HourRain}>
-                    {(pop * 100).toFixed(0)}% {downFallType}
-                </Text>
-                <WeatherIcon icon={displayWeatherIcon(icon)} iconSize={IconSizeTypes.MEDIUM} />
-                <View style={styles.temp}>
-                    <DualTempText
-                        temp={temp}
-                        tempStyleC={TempTextStyleTypes.HOURLY}
-                        degree
-                    />
-                </View>
-            </View>
-        </Card>
-    );
+const HourlyForecastItem = ({
+  temp,
+  dt,
+  icon,
+  pop,
+}: HourlyForecastItemProps) => {
+  const downFallType = temp > 0 ? translate('降雨量') : translate('降雪量');
+  const context = useContext(AppStateContext);
+  const timeFormat = context?.tempScale === 'C' ? 'HH:mm' : 'h:mm a';
+
+  return (
+    <Card cardType={CardStyleTypes.HOURLY}>
+      <View style={HourlyForecastItemStyles.HourlyItem}>
+        <Text style={HourlyForecastItemStyles.HourText}>
+          {moment.unix(dt).format(timeFormat).toUpperCase()}
+        </Text>
+        <Text style={HourlyForecastItemStyles.HourRain}>
+          {(pop * 100).toFixed(0)}% {downFallType}
+        </Text>
+        <WeatherIcon
+          icon={displayWeatherIcon(icon)}
+          iconSize={IconSizeTypes.MEDIUM}
+        />
+        <View style={styles.temp}>
+          <DualTempText
+            temp={temp}
+            tempStyleC={TempTextStyleTypes.HOURLY}
+            degree
+          />
+        </View>
+      </View>
+    </Card>
+  );
 };
 
 const styles = StyleSheet.create({
-    temp: {
-        marginTop: 5
-    },
+  temp: {
+    marginTop: 5,
+  },
 });
 
 export default HourlyForecastItem;

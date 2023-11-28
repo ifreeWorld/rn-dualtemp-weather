@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Dualtemp Weather",
-    "slug": "dualtemp-weather",
+    "name": "Fahrenheit Celsius Weather",
+    "slug": "fahrenheit-celsius-weather",
     "version": "1.1.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,16 +17,15 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app uses your location to show you the weather."
       },
-      "bundleIdentifier": "com.ekarni.rndualtempweatherapp",
+      "bundleIdentifier": "com.wzl.fahrenheitcelsiusweather",
       "buildNumber": "1.1.4"
     },
     "android": {
       "versionCode": 8,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#1C1B4D"
+        "foregroundImage": "./assets/icon.png"
       },
-      "package": "com.ekarni.rndualtempweatherapp"
+      "package": "com.wzl.fahrenheitcelsiusweather"
     },
     "updates": {
       "url": "https://u.expo.dev/444bda66-1ab4-4665-ba53-c2b76743a33b"

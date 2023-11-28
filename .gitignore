@@ -15,4 +15,4 @@ api-gcs.*
 .DS_Store
 
 # config
-app.config.js
+# app.config.js

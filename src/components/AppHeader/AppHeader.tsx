@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { WeatherIconStyles } from '../WeatherIcon/WeatherIcon.Styles';
 import { typography } from '../../Styles/Typography';
 import { palette } from '../../Styles/Palette';
+import { useSafeAreaInsetsStyle } from '../../utils/useSafeAreaInsetsStyle';
 import { AppStateContext } from '../../utils/AppStateContext';
 import { storeSelectedTempScale } from '../../utils/AsyncStorageHelper';
 import { translate } from '../../i18n';
@@ -22,8 +23,11 @@ const AppHeader = ({ location }: AppHeaderPropTypes) => {
     tempScale !== undefined && storeSelectedTempScale(savedTemp);
   };
 
+  const $containerInsets = useSafeAreaInsetsStyle(['top'], 'margin');
+  console.log('containerInsets', $containerInsets);
+
   return (
-    <View style={styles.headerContainer}>
+    <View style={[styles.headerContainer, $containerInsets]}>
       <View style={styles.mainHeaderTitle}>
         <Text style={[typography.headerText, styles.containerHeaderText]}>
           {translate('天气预报')}

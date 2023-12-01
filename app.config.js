@@ -4,12 +4,12 @@ export default ({ config }) => {
     weatherAPI: '604a4eee84b9e0fd136efb915c972163',
     revGeoAPI: '8a67078ab41c42b89f3b315f92d3594f',
     eas: {
-      projectId: '754ff626-feae-4ae7-b026-4a2f8414b8a0',
+      projectId: '2be74524-ee3a-4259-b002-fd31d2c4e469',
     },
   };
 
   return {
-    name: 'Fahrenheit Celsius Weather',
+    name: 'FC Weather',
     ...config,
     extra,
   };

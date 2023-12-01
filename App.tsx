@@ -8,6 +8,10 @@ import {
 } from 'react-native';
 import * as Localization from 'expo-localization';
 import * as SplashScreen from 'expo-splash-screen';
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 import { fetchForecast } from './src/utils/fetchWeather';
 import CurrentWeatherCard from './src/components/CurrentWeatherCard/CurrentWeatherCard';
 import { Weather } from './src/types/WeatherTypes';
@@ -65,7 +69,7 @@ export default function App() {
         setAppIsReady(true);
       }
     }
-
+    console.log('prepare before');
     prepare();
   }, []);
 
@@ -99,28 +103,30 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View onLayout={onLayoutRootView}>
-        <ScrollView
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        >
-          <AppStateContext.Provider
-            value={{ forecast, date, tempScale, setTempScale }}
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <View style={styles.container}>
+        <View onLayout={onLayoutRootView}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
           >
-            <AppHeader location={location} />
-            <CurrentWeatherCard
-              temp={forecast.current.temp}
-              weather={forecast.current.weather[0]}
-            />
-            <HourlyForecast hourlyForecast={forecast.hourly?.slice(0, 24)} />
-            <DailyForecast dailyForecast={forecast.daily} />
-          </AppStateContext.Provider>
-          <AppFooter />
-        </ScrollView>
+            <AppStateContext.Provider
+              value={{ forecast, date, tempScale, setTempScale }}
+            >
+              <AppHeader location={location} />
+              <CurrentWeatherCard
+                temp={forecast.current.temp}
+                weather={forecast.current.weather[0]}
+              />
+              <HourlyForecast hourlyForecast={forecast.hourly?.slice(0, 24)} />
+              <DailyForecast dailyForecast={forecast.daily} />
+            </AppStateContext.Provider>
+            {/* <AppFooter /> */}
+          </ScrollView>
+        </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

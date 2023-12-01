@@ -17,6 +17,9 @@ const en: Translations = {
   中午: 'Noon',
   傍晚: 'Even',
   夜晚: 'Night',
+  获取位置信息失败: 'Failed to get location',
+  需要开启系统定位开关和应用定位权限:
+    'You need to enable the geolocation switch and apply geolocation permission',
 };
 
 export default en;

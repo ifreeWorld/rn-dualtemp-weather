@@ -1,7 +1,8 @@
 import * as Localization from 'expo-localization';
 import { Alert } from 'react-native';
 import Constants from 'expo-constants';
-import * as Location from 'expo-location';
+// import * as Location from 'expo-location';
+import type { GeolocationResponse } from '@react-native-community/geolocation';
 import { fetchReverseGeocoding } from './fetchReverseGeocoding';
 import { fetchGPSLocation } from './fetchUserLocation';
 
@@ -10,12 +11,12 @@ export const base_url = `https://api.openweathermap.org/data/3.0/`;
 export const fetchForecast = async () => {
   const lang = Localization.getLocales()[0].languageCode;
   try {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      Alert.alert('Permission to access location was denied');
-    }
+    // const { status } = await Location.requestForegroundPermissionsAsync();
+    // if (status !== 'granted') {
+    //   Alert.alert('Permission to access location was denied');
+    // }
 
-    const location = (await fetchGPSLocation()) as Location.LocationObject;
+    const location = await fetchGPSLocation();
     console.log('location', location);
 
     const response = await fetch(
@@ -38,6 +39,7 @@ export const fetchForecast = async () => {
       };
     }
   } catch (e) {
+    console.error(e);
     null;
   }
 };

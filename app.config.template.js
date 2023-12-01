@@ -9,7 +9,7 @@ export default ({ config }) => {
   };
 
   return {
-    name: 'Fahrenheit Celsius Weather',
+    name: 'FC Weather',
     ...config,
     extra,
   };

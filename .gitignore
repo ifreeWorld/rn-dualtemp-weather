@@ -59,3 +59,4 @@ yarn-error.*
 # @end expo-cli
 android
 ios
+build-*.apk

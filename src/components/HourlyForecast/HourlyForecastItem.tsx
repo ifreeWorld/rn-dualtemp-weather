@@ -23,7 +23,7 @@ const HourlyForecastItem = ({
   icon,
   pop,
 }: HourlyForecastItemProps) => {
-  const downFallType = temp > 0 ? translate('降雨量') : translate('降雪量');
+  const downFallType = temp > 0 ? translate('降雨') : translate('降雪');
   const context = useContext(AppStateContext);
   const timeFormat = context?.tempScale === 'C' ? 'HH:mm' : 'h:mm a';
 

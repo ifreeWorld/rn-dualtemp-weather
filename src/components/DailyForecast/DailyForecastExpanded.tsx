@@ -16,7 +16,12 @@ type DailyForecastItemExpandedPropTypes = {
 };
 
 const DailyForecastExpanded = ({ day }: DailyForecastItemExpandedPropTypes) => {
-  const graphScale = ['Morning', 'Noon', 'Evening', 'Night'];
+  const graphScale = [
+    translate('清晨'),
+    translate('中午'),
+    translate('傍晚'),
+    translate('夜晚'),
+  ];
   const [cardWidth, setCardWidth] = useState(0);
 
   const context = useContext(AppStateContext);
@@ -121,7 +126,7 @@ const DailyForecastExpanded = ({ day }: DailyForecastItemExpandedPropTypes) => {
           </Text>
           <DailyExpandedFeelInfo
             temp={day.feels_like.morn}
-            label={translate('早上')}
+            label={translate('清晨')}
           />
           <DailyExpandedFeelInfo
             temp={day.feels_like.day}

@@ -22,7 +22,7 @@ const DailyForecast = ({ dailyForecast }: DailyForecastPropTypes) => {
 
   return (
     <View style={DailyForecastStyles.container}>
-      <Subtitle text={translate('7天预报')} />
+      <Subtitle text={translate('多日预报')} />
       {dailyForecast?.map((day, i) => {
         return (
           <DailyForecastItem

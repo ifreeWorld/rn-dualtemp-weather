@@ -6,14 +6,13 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Netlify Status][netlify-shield]][netlify-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -77,18 +76,16 @@
   </ol>
 </details>
 
-
 ### Built With
 
-* [Expo](https://expo.dev/)
-* [EAS](https://expo.dev/eas)
-* [React-Native](https://reactnative.dev/)
-* [Typescript](https://www.typescriptlang.org/)
-* [Open Weather](https://openweathermap.org/)
-
-
+- [Expo](https://expo.dev/)
+- [EAS](https://expo.dev/eas)
+- [React-Native](https://reactnative.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Open Weather](https://openweathermap.org/)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -98,23 +95,23 @@ To get a local copy up and running follow these simple steps.
 Before getting started, you'll need to setup your enviorment.
 
 1. Install a Package Manager (`npm` or `yarn`)
-* 
-  ```sh
+
+- ```sh
   npm install -g npm
   ```
 
 2. Install Expo CLI
-* 
-  ```sh
+
+- ```sh
   npm install --global expo-cli
   ```
 
 3. [OPTIONAL] To publish or build with `Expo Application Services (EAS)`, you'll need to also install the `eas-cli`:
-*
-  ```sh
+
+- ```sh
   npm install -g eas-cli
   ```
-<br />
+  <br />
 
 ### Installation
 
@@ -125,50 +122,55 @@ Before getting started, you'll need to setup your enviorment.
 2. Install packages
    ```sh
    npm install
-   ``` 
+   ```
 
 <br>
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 If you have all of the dependencies installs, then you are ready to get started!
 
 ### <u>Required API Keys</u>
+
 You'll also need to make sure you have the required API keys to run the app. One will be for the weather data and another will be for the reverse geolocation (converting a GPS coordinates to a city or county).
 
 The first key you'll need is from [Open Weather](https://openweathermap.org/)
 <br/>
 The second key you'll need is for the reverse geolocation [Geoapify](https://www.geoapify.com/)
 
-
 Once you have both keys, you'll need to dupliacte the `app.config.template.js` and rename the copy to `app.config.js`. Then add the API keys in the empty `""`
 
 ### <u>Running The App</u>
+
 To start the project, use the following command:
+
 ```sh
   npm start
 ```
-This will start the development server and provide you additional options for testing devices. 
+
+This will start the development server and provide you additional options for testing devices.
 
 Once you are done done testing on your Simulator or using the Expo Go app, you can build the app the following command:
 
 ```sh
   eas build --profile development --platform android
 ```
+
 Note that `development` is one of the predefined build presets. To see the other options or add your own, checkout `eas.json` in the root directory. You'll also need to remove `app.config.js` from the `.gitignore` as EAS uses that to determain what to upload for processing.
 
 <br>
 <br>
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/eladkarni/rn-dualtemp-weather/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -179,30 +181,38 @@ Contributions are what make the open source community such an amazing place to l
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/eladkarni/rn-dualtemp-weather.svg?style=for-the-badge
 [contributors-url]: https://github.com/EladKarni/rn-dualtemp-weather/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/EladKarni/rn-dualtemp-weather.svg?style=for-the-badge
 [forks-url]: https://github.com/EladKarni/rn-dualtemp-weather/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/EladKarni/rn-dualtemp-weather.svg?style=for-the-badge
 [stars-url]: https://github.com/EladKarni/rn-dualtemp-weather/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/EladKarni/rn-dualtemp-weather.svg?style=for-the-badge
 [issues-url]: https://github.com/EladKarni/rn-dualtemp-weather/issues
-
 [license-shield]: https://img.shields.io/github/license/EladKarni/rn-dualtemp-weather.svg?style=for-the-badge
 [license-url]: https://github.com/EladKarni/rn-dualtemp-weather/blob/master/LICENSE.txt
-
 [netlify-shield]: https://img.shields.io/netlify/dab5e8be-4a0f-4957-8dba-4aa99d705e43?style=for-the-badge
 [netlify-url]: https://api.netlify.com/api/v1/badges/dab5e8be-4a0f-4957-8dba-4aa99d705e43/deploy-status
+
+## CLI
+
+修改了影响 android 原生的东西，需要先改版本号（app.json、package.json），然后重新 prebuild
+
+```bash
+yarn prebuild
+```
+
+上传到 [pushy](https://pushy.reactnative.cn/docs/publish)，上传完之后，需要在 [pushy](https://pushy.reactnative.cn/docs/publish) 后台将老版本设置为过期
+
+```bash
+pushy uploadApk ...
+```

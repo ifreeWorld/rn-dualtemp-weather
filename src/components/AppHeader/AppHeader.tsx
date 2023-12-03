@@ -30,7 +30,7 @@ const AppHeader = ({ location }: AppHeaderPropTypes) => {
     <View style={[styles.headerContainer, $containerInsets]}>
       <View style={styles.mainHeaderTitle}>
         <Text style={[typography.headerText, styles.containerHeaderText]}>
-          {translate('天气预报')}
+          {translate('天气预报')}1
         </Text>
         <View style={styles.locationHeader}>
           <Text style={[typography.headerText, styles.locationText]}>

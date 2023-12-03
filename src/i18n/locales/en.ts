@@ -6,7 +6,7 @@ const en: Translations = {
   '24小时预报': 'Hourly Forecast',
   降雨: 'Rain',
   降雪: 'Snow',
-  '7天预报': 'Daily Forecast',
+  多日预报: 'Daily Forecast',
   日升: 'Sunrise',
   日落: 'Sunset',
   体感温度: 'Feels Like',

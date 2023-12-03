@@ -5,7 +5,9 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Platform,
 } from 'react-native';
+import { simpleUpdate } from 'react-native-update';
 import * as Localization from 'expo-localization';
 import * as SplashScreen from 'expo-splash-screen';
 import {
@@ -18,6 +20,7 @@ import { Weather } from './src/types/WeatherTypes';
 import { palette } from './src/Styles/Palette';
 import HourlyForecast from './src/components/HourlyForecast/HourlyForecast';
 import AppHeader from './src/components/AppHeader/AppHeader';
+import _updateConfig from './update.json';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 
@@ -40,7 +43,11 @@ SplashScreen.preventAutoHideAsync();
 const lang = Localization.locale;
 moment.locale(lang);
 
-export default function App() {
+const { appKey } = _updateConfig[Platform.OS];
+
+// 整个应用的根组件，class 或函数组件都可以
+
+function App() {
   const [forecast, setForecast] = useState<Weather>();
   const [tempScale, setTempScale] = useState<'C' | 'F'>('F');
   const [location, setLocation] = useState<string>('');
@@ -129,6 +136,16 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+// 对根组件使用simpleUpdate方法封装后导出
+export default simpleUpdate(App, {
+  appKey,
+  onPushyEvents: ({ type, data }) => {
+    // 热更成功或报错的事件回调
+    // 可上报自有或第三方数据统计服务
+    console.log('simpleUpdate', type, data);
+  },
+});
 
 const styles = StyleSheet.create({
   container: {

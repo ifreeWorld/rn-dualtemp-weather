@@ -57,6 +57,5 @@ yarn-error.*
 *.tsbuildinfo
 
 # @end expo-cli
-android
-ios
 build-*.apk
+.update

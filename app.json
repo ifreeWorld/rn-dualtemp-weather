@@ -35,10 +35,9 @@
       },
       "package": "com.wzl.fcweather"
     },
-    "updates": {
-      "url": "https://u.expo.dev/2be74524-ee3a-4259-b002-fd31d2c4e469"
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     },
-    "runtimeVersion": "1.1.12",
     "web": {
       "favicon": "./assets/favicon.png"
     }

@@ -23,6 +23,12 @@ import AppHeader from './src/components/AppHeader/AppHeader';
 import _updateConfig from './update.json';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
+import {
+  AdEventType,
+  AppOpenAd,
+  TestIds,
+} from 'react-native-google-mobile-ads';
 
 import {
   useFonts,
@@ -45,6 +51,15 @@ moment.locale(lang);
 
 const { appKey } = _updateConfig[Platform.OS];
 
+const openAdRef = AppOpenAd.createForAdRequest(
+  __DEV__
+    ? 'ca-app-pub-3940256099942544/9257395921'
+    : 'ca-app-pub-1636012381445371/1905749666',
+  {
+    requestNonPersonalizedAdsOnly: true,
+  }
+);
+
 // 整个应用的根组件，class 或函数组件都可以
 
 function App() {
@@ -54,6 +69,7 @@ function App() {
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [date, setDate] = useState(moment());
   const [appIsReady, setAppIsReady] = useState(false);
+  const [adLoaded, setAdLoaded] = useState(false);
 
   let [fontsLoaded] = useFonts({
     DMSans_400Regular,
@@ -78,7 +94,51 @@ function App() {
     }
     console.log('prepare before');
     prepare();
+    // Google ADMob 广告
+    const unsubscribeOpenEvents = loadADMobOpenAd();
+    return () => {
+      unsubscribeOpenEvents();
+    };
   }, []);
+
+  useEffect(() => {
+    if (adLoaded) {
+      openAdRef.show();
+    }
+  }, [adLoaded]);
+
+  const loadADMobOpenAd = () => {
+    console.log('loadADMobOpenAd');
+    const unsubscribeLoaded = openAdRef.addAdEventListener(
+      AdEventType.LOADED,
+      async () => {
+        console.log('Open ads loaded');
+        setAdLoaded(true);
+      }
+    );
+    const unsubscribeError = openAdRef.addAdEventListener(
+      AdEventType.ERROR,
+      async () => {
+        console.log('Open ads error');
+      }
+    );
+
+    const unsubscribeClosed = openAdRef.addAdEventListener(
+      AdEventType.CLOSED,
+      () => {
+        console.log('Open ads closed');
+        openAdRef.load();
+      }
+    );
+
+    openAdRef.load();
+
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeError();
+      unsubscribeClosed();
+    };
+  };
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {

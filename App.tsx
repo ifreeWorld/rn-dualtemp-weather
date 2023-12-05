@@ -21,6 +21,7 @@ import { palette } from './src/Styles/Palette';
 import HourlyForecast from './src/components/HourlyForecast/HourlyForecast';
 import AppHeader from './src/components/AppHeader/AppHeader';
 import _updateConfig from './update.json';
+import _admobConfig from './admob.json';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
@@ -50,11 +51,15 @@ const lang = Localization.locale;
 moment.locale(lang);
 
 const { appKey } = _updateConfig[Platform.OS];
+const { openAdId } = _admobConfig[Platform.OS];
 
+// https://developers.google.com/admob/android/test-ads?hl=zh-cn
 const openAdRef = AppOpenAd.createForAdRequest(
   __DEV__
-    ? 'ca-app-pub-3940256099942544/9257395921'
-    : 'ca-app-pub-1636012381445371/1905749666',
+    ? // 测试广告ID，先写死
+      'ca-app-pub-3940256099942544/9257395921'
+    : // 生产广告ID
+      openAdId,
   {
     requestNonPersonalizedAdsOnly: true,
   }

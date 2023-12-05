@@ -24,13 +24,12 @@ const AppHeader = ({ location }: AppHeaderPropTypes) => {
   };
 
   const $containerInsets = useSafeAreaInsetsStyle(['top'], 'margin');
-  console.log('containerInsets', $containerInsets);
 
   return (
     <View style={[styles.headerContainer, $containerInsets]}>
       <View style={styles.mainHeaderTitle}>
         <Text style={[typography.headerText, styles.containerHeaderText]}>
-          {translate('天气预报')}1
+          {translate('天气预报')}
         </Text>
         <View style={styles.locationHeader}>
           <Text style={[typography.headerText, styles.locationText]}>

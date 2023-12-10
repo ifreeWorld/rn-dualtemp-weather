@@ -2,7 +2,7 @@
   "expo": {
     "name": "FC Weather",
     "slug": "fc-weather",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "orientation": "portrait",
     "icon": "./assets/icon2.png",
     "plugins": [
@@ -36,10 +36,9 @@
         "NSLocationWhenInUseUsageDescription": "This app uses your location to show you the weather."
       },
       "bundleIdentifier": "com.wzl.fcweather",
-      "buildNumber": "1.1.12"
+      "buildNumber": "1.1.13"
     },
     "android": {
-      "versionCode": 8,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon2.png",
         "backgroundColor": "#673AB7"

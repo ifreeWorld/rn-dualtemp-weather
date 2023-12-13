@@ -1,6 +1,6 @@
 {
   "name": "fc-weather",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start --dev-client",
@@ -10,7 +10,7 @@
     "prebuild": "expo prebuild",
     "buildlocal:android": "eas build --profile preview-apk --platform android --local",
     "buildlocal:ios": "eas build --profile preview-apk --platform ios --local",
-    "build:android": "eas build --profile production --platform android",
+    "build:android": "eas build --profile production --platform android --local",
     "build:ios": "eas build --profile production --platform ios",
     "release:android": "eas build --profile production --platform android --local",
     "release:ios": "eas build --profile production --platform ios --local",
@@ -34,17 +34,15 @@
     "expo-updates": "~0.18.17",
     "i18n-js": "3.9.2",
     "moment": "^2.29.1",
-    "onesignal-expo-plugin": "^2.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "^0.72.5",
     "react-native-chart-kit": "^6.12.0",
     "react-native-google-mobile-ads": "^12.4.0",
-    "react-native-onesignal": "^5.0.3",
     "react-native-permissions": "^3.10.1",
     "react-native-safe-area-context": "^4.7.4",
     "react-native-svg": "13.9.0",
-    "react-native-update": "^9.1.4",
+    "react-native-update": "^9.1.5",
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {

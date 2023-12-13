@@ -123,8 +123,8 @@ function App() {
     );
     const unsubscribeError = openAdRef.addAdEventListener(
       AdEventType.ERROR,
-      async () => {
-        console.log('Open ads error');
+      async (e) => {
+        console.log('Open ads error', e.message);
       }
     );
 

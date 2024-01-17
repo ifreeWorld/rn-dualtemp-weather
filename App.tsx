@@ -7,7 +7,7 @@ import {
   View,
   Platform,
 } from 'react-native';
-import { simpleUpdate } from 'react-native-update';
+// import { simpleUpdate } from 'react-native-update';
 import * as Localization from 'expo-localization';
 import * as SplashScreen from 'expo-splash-screen';
 import {
@@ -203,14 +203,15 @@ function App() {
 }
 
 // 对根组件使用simpleUpdate方法封装后导出
-export default simpleUpdate(App, {
-  appKey,
-  onPushyEvents: ({ type, data }) => {
-    // 热更成功或报错的事件回调
-    // 可上报自有或第三方数据统计服务
-    console.log('simpleUpdate', type, data);
-  },
-});
+// export default simpleUpdate(App, {
+//   appKey,
+//   onPushyEvents: ({ type, data }) => {
+//     // 热更成功或报错的事件回调
+//     // 可上报自有或第三方数据统计服务
+//     console.log('simpleUpdate', type, data);
+//   },
+// });
+export default App;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,8 +1,12 @@
 {
   "ios": {
-    "openAdId": "ca-app-pub-1636012381445371/1623474797"
+    "openAdId": "ca-app-pub-1636012381445371/1623474797",
+    "bannerAdId": "ca-app-pub-1636012381445371/8102120179",
+    "rewardedAdId": "ca-app-pub-1636012381445371/8641176229"
   },
   "android": {
-    "openAdId": "ca-app-pub-1636012381445371/1905749666"
+    "openAdId": "ca-app-pub-1636012381445371/1905749666",
+    "bannerAdId": "ca-app-pub-1636012381445371/5451906101",
+    "rewardedAdId": "ca-app-pub-1636012381445371/5587637470"
   }
 }

@@ -28,6 +28,8 @@ import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import {
   AdEventType,
   AppOpenAd,
+  BannerAd,
+  BannerAdSize,
   TestIds,
 } from 'react-native-google-mobile-ads';
 
@@ -51,7 +53,7 @@ const lang = Localization.locale;
 moment.locale(lang);
 
 const { appKey } = _updateConfig[Platform.OS];
-const { openAdId } = _admobConfig[Platform.OS];
+const { openAdId, bannerAdId } = _admobConfig[Platform.OS];
 
 // https://developers.google.com/admob/android/test-ads?hl=zh-cn
 const openAdRef = AppOpenAd.createForAdRequest(
@@ -191,6 +193,17 @@ function App() {
                 temp={forecast.current.temp}
                 weather={forecast.current.weather[0]}
               />
+              <View style={styles.bannerAd}>
+                <BannerAd
+                  unitId={bannerAdId}
+                  size={BannerAdSize.BANNER}
+                  requestOptions={{
+                    networkExtras: {
+                      collapsible: 'bottom',
+                    },
+                  }}
+                />
+              </View>
               <HourlyForecast hourlyForecast={forecast.hourly?.slice(0, 24)} />
               <DailyForecast dailyForecast={forecast.daily} />
             </AppStateContext.Provider>
@@ -222,5 +235,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bannerAd: {
+    paddingHorizontal: 20,
   },
 });

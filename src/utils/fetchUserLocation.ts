@@ -21,7 +21,7 @@ export const fetchGPSLocation = () => {
         );
         return reject('GetCurrentPosition Error');
       },
-      { enableHighAccuracy: true }
+      { enableHighAccuracy: false }
     );
   });
   // let location;
